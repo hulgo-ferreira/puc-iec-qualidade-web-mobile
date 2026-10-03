@@ -13,8 +13,10 @@ export default defineConfig({
   },
   webServer: {
     command: 'npm run build && npm run preview',
+    // Credenciais FALSAS só pra ligar o banner (a chamada é mockada no spec 08).
+    env: { VITE_FIREBASE_PROJECT_ID: 'demo', VITE_FIREBASE_API_KEY: 'fake', VITE_FIREBASE_APP_ID: 'fake' },
     url: 'http://localhost:4173',
-    reuseExistingServer: true,
+    reuseExistingServer: false, // build próprio, com as credenciais falsas
     timeout: 120_000,
   },
   projects: [

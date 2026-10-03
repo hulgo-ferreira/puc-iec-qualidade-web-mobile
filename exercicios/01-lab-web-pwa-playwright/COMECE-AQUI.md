@@ -62,7 +62,14 @@ Mostra o placar por aula, **mesmo com testes incompletos** (não aborta). Teste 
 - **Ver o teste em câmera lenta:** `SLOWMO=800 npx playwright test --headed --workers=1`
   (Windows: `set SLOWMO=800 && npx playwright test --headed --workers=1`).
 
-## 6. Assista o screencast
+## 6. (Opcional) Demo Firebase — banner via Remote Config
+
+Na Aula 3 o professor mostra o app lendo um valor do **Firebase Remote Config** (grátis, plano Spark).
+Pra ver no seu app: copie `.env.example` para `.env` e preencha as 3 variáveis `VITE_FIREBASE_*`
+(o professor passa em aula, ou use as do seu próprio projeto). `npm run dev` → banner no topo.
+Sem as variáveis o app roda normal. O teste bônus `tests/e2e-bonus/08-*` mostra como **mockar** essa chamada.
+
+## 7. Assista o screencast
 
 O screencast da unidade mostra o professor resolvendo o primeiro exercício de
 cada spec. Pause, rode, compare.

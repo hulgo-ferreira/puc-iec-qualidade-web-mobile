@@ -44,6 +44,14 @@ a {
 
 /* ---- shell ---- */
 
+.remote-banner {
+  background: #1e3a5f;
+  color: #fff;
+  text-align: center;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
 .offline-banner {
   background: var(--accent);
   color: #fff;

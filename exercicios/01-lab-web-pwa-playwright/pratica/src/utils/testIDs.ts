@@ -85,6 +85,7 @@ export const testIDs = {
 
   shell: {
     offlineBanner: 'offline-banner',
+    remoteBanner: 'remote-banner',
     routeLoading: 'route-loading',
     errorBoundary: 'error-boundary',
   },

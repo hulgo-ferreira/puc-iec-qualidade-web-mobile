@@ -4,6 +4,7 @@ import { currentUser } from '@/store/auth';
 import { testIDs } from '@/utils/testIDs';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import OfflineBanner from '@/components/OfflineBanner';
+import RemoteBanner from '@/components/RemoteBanner';
 import Login from '@/screens/Login';
 import Discover from '@/screens/Discover';
 import MovieList from '@/screens/MovieList';
@@ -32,6 +33,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <OfflineBanner />
+      <RemoteBanner />
       <Suspense
         fallback={
           <div className="route-loading" data-testid={testIDs.shell.routeLoading}>
