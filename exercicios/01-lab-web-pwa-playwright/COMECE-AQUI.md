@@ -40,7 +40,29 @@ estão comentados). Seu trabalho é preenchê-los.
 2. `tests/e2e/01-login.spec.ts` — locators + assertions modelo (resolvido)
 3. `02-busca-mock.spec.ts` → `03-visual.spec.ts` → `04-spa.spec.ts` → `05-pwa-offline.spec.ts`
 
-## 5. Assista o screencast
+## 5. Confira seu progresso (`npm run check`)
+
+```bash
+cd exercicios/01-lab-web-pwa-playwright/pratica   # confirme o lugar: ls scripts
+npm run check
+```
+
+Mostra o placar por aula, **mesmo com testes incompletos** (não aborta). Teste que passa
+"vazio" (TODO sem asserção) **não conta**:
+
+```
+✓ Aula 2 · 01-login: 3/3
+✗ Aula 2 · 02-busca-mock: 2/9 — 7 sem asserção (TODO)
+```
+
+- **`npm run lint`** pega os erros que mais confundem: `expect` **sem `await`**, `expect`
+  **sem matcher** (`.toBeVisible()`…) e `waitForTimeout`. Instale a extensão ESLint do VS Code.
+- **Spec 03 (visual) falha na 1ª vez:** ainda não existe baseline. Rode
+  `npm run test:visual:update` uma vez, **commite** a pasta `*-snapshots/` e depois `npm run check`.
+- **Ver o teste em câmera lenta:** `SLOWMO=800 npx playwright test --headed --workers=1`
+  (Windows: `set SLOWMO=800 && npx playwright test --headed --workers=1`).
+
+## 6. Assista o screencast
 
 O screencast da unidade mostra o professor resolvendo o primeiro exercício de
 cada spec. Pause, rode, compare.

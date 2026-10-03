@@ -10,6 +10,8 @@ export default defineConfig({
   use: {
     baseURL: 'http://localhost:4173',
     trace: 'on-first-retry',
+    // Demo ao vivo / ver o teste rodando devagar: SLOWMO=800 npx playwright test --headed
+    launchOptions: { slowMo: Number(process.env.SLOWMO ?? 0) },
   },
   webServer: {
     command: 'npm run build && npm run preview',
