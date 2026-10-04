@@ -22,7 +22,7 @@ export default function MovieCard({ movie }: Props) {
           {movie.title}
         </h3>
         <div className="movie-card-meta">
-          <span>⭐ {movie.vote_average.toFixed(1)}</span>
+          <span className="rating">⭐ {movie.vote_average.toFixed(1)}</span>
           <button
             className="heart-button"
             data-testid={testIDs.movieCard.heart(movie.id)}

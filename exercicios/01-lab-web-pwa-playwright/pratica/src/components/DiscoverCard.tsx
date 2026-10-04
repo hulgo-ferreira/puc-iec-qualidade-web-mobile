@@ -29,7 +29,10 @@ export default function DiscoverCard({ movie }: Props) {
         <h3 className="movie-card-title" data-testid={testIDs.discover.title(movie.id)}>
           {movie.title}
         </h3>
-        <span>⭐ {movie.vote_average.toFixed(1)}</span>
+        <div className="movie-card-meta">
+          <span className="rating">⭐ {movie.vote_average.toFixed(1)}</span>
+          <span>{(movie.release_date || '').slice(0, 4)}</span>
+        </div>
       </div>
     </article>
   );

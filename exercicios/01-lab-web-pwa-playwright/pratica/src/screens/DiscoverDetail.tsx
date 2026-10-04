@@ -7,7 +7,9 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getMovieDetail, getMovieReviews, posterUrl, type TMDBMovie, type TMDBReview } from '@/services/tmdb';
+import { backdropUrl, getMovieDetail, getMovieReviews, posterUrl, type TMDBMovie, type TMDBReview } from '@/services/tmdb';
+import { shareMovie } from '@/pwa/share';
+import CommentsBox from '@/components/CommentsBox';
 import { testIDs } from '@/utils/testIDs';
 import Poster from '@/components/Poster';
 
@@ -46,6 +48,8 @@ export default function DiscoverDetail() {
   }, [id, reviewsState]);
 
   const url = movie ? posterUrl(movie.poster_path) : null;
+  const backdrop = movie ? backdropUrl(movie.backdrop_path) : null;
+  const [shareMsg, setShareMsg] = useState('');
 
   return (
     <main data-testid={testIDs.discoverDetail.screen}>
@@ -73,6 +77,10 @@ export default function DiscoverDetail() {
           </div>
         )}
 
+        {movie && backdrop && (
+          <div className="detail-backdrop" style={{ backgroundImage: `url(${backdrop})` }} aria-hidden />
+        )}
+
         {movie && (
           <div className="detail-hero">
             {url ? (
@@ -85,7 +93,25 @@ export default function DiscoverDetail() {
               <p className="detail-meta">
                 {(movie.release_date || '').slice(0, 4)} · ⭐ {movie.vote_average.toFixed(1)}
               </p>
+              {movie.genres && movie.genres.length > 0 && (
+                <ul className="genre-tags" data-testid={testIDs.detailExtras.genres}>
+                  {movie.genres.map((g) => (
+                    <li key={g.id}>{g.name}</li>
+                  ))}
+                </ul>
+              )}
               <p>{movie.overview}</p>
+
+              <div className="detail-actions">
+                <button
+                  className="icon-button"
+                  data-testid={testIDs.detailExtras.share}
+                  onClick={() => void shareMovie(movie.title).then((r) => setShareMsg(r === 'copied' ? 'Link copiado ✓' : ''))}
+                >
+                  🔗 Compartilhar
+                </button>
+                {shareMsg && <span className="muted" role="status">{shareMsg}</span>}
+              </div>
 
               <button
                 className="icon-button reviews-toggle"
@@ -116,6 +142,8 @@ export default function DiscoverDetail() {
             </div>
           </div>
         )}
+
+        {movie && <CommentsBox movieKey={`tmdb-${movie.id}`} />}
       </div>
     </main>
   );

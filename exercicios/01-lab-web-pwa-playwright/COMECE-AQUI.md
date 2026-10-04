@@ -69,7 +69,24 @@ Pra ver no seu app: copie `.env.example` para `.env` e preencha as 3 variáveis 
 (o professor passa em aula, ou use as do seu próprio projeto). `npm run dev` → banner no topo.
 Sem as variáveis o app roda normal. O teste bônus `tests/e2e-bonus/08-*` mostra como **mockar** essa chamada.
 
-## 7. Assista o screencast
+## 7. (Opcional) Explore a PWA — o que é "PWA" de verdade
+
+Rode **no build** (o Service Worker não existe no `npm run dev`):
+
+```bash
+cd exercicios/01-lab-web-pwa-playwright/pratica
+npm run build && npm run preview     # abre http://localhost:4173
+```
+
+1. Entre (`aluno@puc.br` / `1234`) e abra **`/pwa`** — o "Raio-X" mostra ao vivo HTTPS, manifest, Service Worker, cache, banco local e rede.
+2. No Chrome, procure o ícone **Instalar** na barra de endereço (ou DevTools → Application → Manifest).
+3. DevTools → **Network → Offline**, recarregue: o app continua abrindo.
+4. Abra um filme, **comente com a rede desligada** (⏳ na fila) e religue a rede (✓ enviado). DevTools → Application → **IndexedDB → cinefav** mostra o dado salvo.
+5. Teste automatizado: `npm run test:bonus` (specs `09-pwa-painel` e `10-banco-offline` — não pontuam).
+
+> Posters do TMDB (precisa do token do `.env`): visitou online uma vez → aparecem offline. Veja `Application → Cache storage → cinefav-posters`.
+
+## 8. Assista o screencast
 
 O screencast da unidade mostra o professor resolvendo o primeiro exercício de
 cada spec. Pause, rode, compare.

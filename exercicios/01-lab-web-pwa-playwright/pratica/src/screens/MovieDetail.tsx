@@ -5,6 +5,8 @@ import { getMovieById } from '@/services/api';
 import { toggleFavorite, useFavorites } from '@/store/favorites';
 import { testIDs } from '@/utils/testIDs';
 import Poster from '@/components/Poster';
+import CommentsBox from '@/components/CommentsBox';
+import { shareMovie } from '@/pwa/share';
 
 export default function MovieDetail() {
   const { id } = useParams();
@@ -46,17 +48,24 @@ export default function MovieDetail() {
                 {movie.release_date.slice(0, 4)} · ⭐ {movie.vote_average.toFixed(1)}
               </p>
               <p>{movie.overview}</p>
-              <button
-                className={favorite ? 'detail-favorite active' : 'detail-favorite'}
-                data-testid={testIDs.movieDetail.favoriteButton}
-                aria-pressed={favorite}
-                onClick={() => toggleFavorite(movie.id)}
-              >
-                {favorite ? '❤️ Nos favoritos' : '🤍 Favoritar'}
-              </button>
+              <div className="detail-actions">
+                <button
+                  className={favorite ? 'detail-favorite active' : 'detail-favorite'}
+                  data-testid={testIDs.movieDetail.favoriteButton}
+                  aria-pressed={favorite}
+                  onClick={() => toggleFavorite(movie.id)}
+                >
+                  {favorite ? '❤️ Nos favoritos' : '🤍 Favoritar'}
+                </button>
+                <button className="icon-button" onClick={() => void shareMovie(movie.title)}>
+                  🔗 Compartilhar
+                </button>
+              </div>
             </div>
           </div>
         )}
+
+        {movie && <CommentsBox movieKey={`qa-${movie.id}`} />}
       </div>
     </main>
   );
