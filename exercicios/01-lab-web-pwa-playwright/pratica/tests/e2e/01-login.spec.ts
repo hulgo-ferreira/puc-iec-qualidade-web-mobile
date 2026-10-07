@@ -8,26 +8,30 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { test, expect } from '@playwright/test';
+import { LoginPage } from '../../src/Pages/LoginPage';
 
-// Este spec TESTA o login — então não pode começar logado.
-// test.use sobrescreve o storageState do projeto só neste arquivo.
 test.use({ storageState: { cookies: [], origins: [] } });
 
 test.describe('Login', () => {
-  test('1. usuário sem sessão é redirecionado pra /login', async ({ page }) => {
+
+  test('CT01. Deve redirecionar usuário sem sessão para /login', async ({ page }) => {
     await page.goto('/');
-    // Rota protegida sem auth → guard manda pro login.
     await expect(page.getByTestId('login-screen')).toBeVisible();
     await expect(page).toHaveURL(/\/login/);
   });
 
-  test('2. login com credenciais válidas leva à tela principal', async ({ page }) => {
-    await page.goto('/login');
+  test('CT02. Deve fazer login com credenciais válidas', async ({ page }) => {
+    const loginPage = new LoginPage(page);
 
-    // getByTestId: seletor estável, imune a mudança de texto/CSS.
-    await page.getByTestId('login-email-input').fill('aluno@puc.br');
-    await page.getByTestId('login-password-input').fill('1234');
-    await page.getByTestId('login-submit-button').click();
+    await loginPage.acessarPagina();
+    await loginPage.realizarLogin('aluno@puc.br', '1234');
+  });
+
+  test('CT03. Deve mostrar mensagem de erro com senha inválida', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+
+    await loginPage.acessarPagina();
+    await loginPage.realizarLogin('aluno@puc.br', 'senhaerrada');
 
     // Web-first assertion: espera + verifica num passo só (auto-waiting).
     // NUNCA page.waitForTimeout(3000) — é assim que nasce suíte flaky.
@@ -36,18 +40,16 @@ test.describe('Login', () => {
     // (dado real do TMDB, muda sempre). Testar a TELA (estrutural) em vez
     // do CONTEÚDO (variável) é o que mantém esse teste estável. Pra dado
     // fixo e determinístico, veja o ambiente QA em '/qa' (specs 02-05).
-    await expect(page.getByTestId('discover-screen')).toBeVisible();
+    await loginPage.validarMensagemErro('E-mail ou senha inválidos');
+    await expect(page).toHaveURL(/\/login/);
   });
 
-  test('3. senha errada mostra mensagem de erro e NÃO navega', async ({ page }) => {
-    await page.goto('/login');
+  test('CT04. Deve monstrar mensagem de erro com usuário incorreto', async ({ page }) => {
+    const loginPage = new LoginPage(page);
 
-    await page.getByTestId('login-email-input').fill('aluno@puc.br');
-    await page.getByTestId('login-password-input').fill('senha-errada');
-    await page.getByTestId('login-submit-button').click();
-
-    // role=alert: acessibilidade e teste usando o MESMO contrato.
-    await expect(page.getByRole('alert')).toHaveText('E-mail ou senha inválidos');
+    await loginPage.acessarPagina();
+    await loginPage.realizarLogin('usuarioerrado@puc.br', '1234');
+    await loginPage.validarMensagemErro('E-mail ou senha inválidos');
     await expect(page).toHaveURL(/\/login/);
   });
 });
