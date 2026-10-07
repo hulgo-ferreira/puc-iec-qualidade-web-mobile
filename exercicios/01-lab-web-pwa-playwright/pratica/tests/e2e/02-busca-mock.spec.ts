@@ -110,4 +110,11 @@ test.describe('Busca + network mocking', () => {
 
     await expect(page.getByTestId('movielist-grid')).toBeVisible();
   });
+
+  test('CT08. Prova do pitfall', async ({ page }) => {
+    await abrirPagina(page, '/search');
+    await page.getByTestId('search-input').fill('Matrix');
+
+    await expect(page.getByTestId('search-result-999999')).toBeVisible();
+  });
 });
