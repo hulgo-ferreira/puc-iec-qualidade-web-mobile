@@ -260,6 +260,25 @@ h3 {
   box-shadow: 0 8px 20px rgba(88, 72, 229, 0.4);
 }
 
+.link-button {
+  background: none;
+  border: none;
+  color: #a5b4fc;
+  font-size: 14px;
+  text-align: center;
+  padding: 6px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link-button:hover {
+  color: #c7d2fe;
+}
+
+.login-card button[type='submit']:disabled {
+  opacity: 0.6;
+}
+
 .login-error {
   color: #ff8a8a;
   font-size: 14px;

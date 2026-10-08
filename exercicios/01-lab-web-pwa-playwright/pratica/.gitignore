@@ -8,3 +8,5 @@ playwright/.auth/
 .lighthouseci/
 *.local
 .DS_Store
+
+server/db.json

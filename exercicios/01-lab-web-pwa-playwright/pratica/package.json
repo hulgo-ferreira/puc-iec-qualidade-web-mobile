@@ -14,7 +14,8 @@
     "test:bonus": "playwright test --config=playwright.bonus.config.ts",
     "lighthouse": "lhci autorun",
     "check": "node scripts/check.mjs",
-    "lint": "eslint tests"
+    "lint": "eslint tests",
+    "api": "node server/api.mjs"
   },
   "dependencies": {
     "idb-keyval": "^6.3.0",
