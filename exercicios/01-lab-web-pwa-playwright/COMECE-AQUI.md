@@ -2,6 +2,8 @@
 
 Perdido? Sequência mínima:
 
+> 📘 **Guia completo, exercício por exercício:** [`pratica/PASSO-A-PASSO.md`](pratica/PASSO-A-PASSO.md) · lista só dos exercícios: [`pratica/README.md`](pratica/README.md)
+
 ## 1. Clone e entre na pasta certa
 
 ```bash

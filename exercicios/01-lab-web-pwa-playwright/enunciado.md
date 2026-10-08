@@ -90,6 +90,8 @@ npm run test:e2e     # a suíte roda — specs com TODO ainda passam "vazios"
   teste (o route() intercepta antes da chamada sair pra rede); só pra usar a tela
   manualmente. Detalhes em `pratica/README.md`.
 
+> 📘 **Passo a passo de cada exercício:** `pratica/PASSO-A-PASSO.md` (lista resumida em `pratica/README.md`).
+
 - **🔴 Desafio difícil — loader + rede real throttled** *(pra casa, depois dos specs 02-03)*:
   a tela de detalhe do Discover (`/`) tem um loading state enquanto busca o filme de
   verdade no TMDB. Teste esse loader com **rede real desacelerada artificialmente** —
