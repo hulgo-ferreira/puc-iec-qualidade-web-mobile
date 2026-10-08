@@ -35,9 +35,9 @@ test.describe('Cadastro e login', () => {
     await criarConta(page, 'Bruno Lima', 'bruno@teste.com', 'segredo2');
     await expect(page.getByTestId('discover-screen')).toBeVisible();
 
-    // "sair": apaga só a SESSÃO (a conta continua guardada)
-    await page.evaluate(() => localStorage.removeItem('cinefav-auth'));
-    await page.goto('/login');
+    // "sair": apaga só a SESSÃO (a conta continua guardada) e volta pro login
+    await page.getByTestId('logout-button').click();
+    await expect(page.getByTestId('login-screen')).toBeVisible();
 
     await page.getByTestId('login-email-input').fill('bruno@teste.com');
     await page.getByTestId('login-password-input').fill('segredo2');
@@ -48,8 +48,8 @@ test.describe('Cadastro e login', () => {
   test('3. senha errada na conta criada é recusada', async ({ page }) => {
     await criarConta(page, 'Carla Dias', 'carla@teste.com', 'segredo3');
     await expect(page.getByTestId('discover-screen')).toBeVisible();
-    await page.evaluate(() => localStorage.removeItem('cinefav-auth'));
-    await page.goto('/login');
+    await page.getByTestId('logout-button').click();
+    await expect(page.getByTestId('login-screen')).toBeVisible();
 
     await page.getByTestId('login-email-input').fill('carla@teste.com');
     await page.getByTestId('login-password-input').fill('outra-senha');
@@ -60,7 +60,7 @@ test.describe('Cadastro e login', () => {
   test('4. e-mail repetido mostra erro de conta já existente', async ({ page }) => {
     await criarConta(page, 'Davi Rocha', 'davi@teste.com', 'segredo4');
     await expect(page.getByTestId('discover-screen')).toBeVisible();
-    await page.evaluate(() => localStorage.removeItem('cinefav-auth'));
+    await page.getByTestId('logout-button').click();
 
     await criarConta(page, 'Outro Davi', 'davi@teste.com', 'segredo5');
     await expect(page.getByTestId('register-error-message')).toHaveText('Já existe uma conta com esse e-mail');
@@ -81,5 +81,16 @@ test.describe('Cadastro e login', () => {
     await page.getByTestId('login-password-input').fill('1234');
     await page.getByTestId('login-submit-button').click();
     await expect(page.getByTestId('discover-screen')).toBeVisible();
+  });
+
+  test('7. "Sair" encerra a sessão: voltar pra / manda pro login', async ({ page }) => {
+    await criarConta(page, 'Fábio Reis', 'fabio@teste.com', 'segredo7');
+    await expect(page.getByTestId('discover-screen')).toBeVisible();
+
+    await page.getByTestId('logout-button').click();
+    await expect(page).toHaveURL(/\/login/);
+
+    await page.goto('/'); // rota protegida: sem sessão, volta pro login
+    await expect(page.getByTestId('login-screen')).toBeVisible();
   });
 });

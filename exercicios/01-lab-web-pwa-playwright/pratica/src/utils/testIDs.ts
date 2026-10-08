@@ -129,6 +129,7 @@ export const testIDs = {
   },
 
   shell: {
+    logout: 'logout-button',
     updateToast: 'update-toast',
     updateButton: 'update-reload-button',
     installBanner: 'install-button',

@@ -4,6 +4,7 @@ import type { Movie } from '@/types/movie';
 import { getPopularMovies } from '@/services/api';
 import { testIDs } from '@/utils/testIDs';
 import MovieCard from '@/components/MovieCard';
+import LogoutButton from '@/components/LogoutButton';
 
 type Status = 'loading' | 'ready' | 'error';
 
@@ -68,6 +69,7 @@ export default function MovieList() {
         <button className="icon-button" onClick={() => navigate('/')}>
           ← Tela principal
         </button>
+        <LogoutButton />
       </header>
 
       <p className="qa-note">
