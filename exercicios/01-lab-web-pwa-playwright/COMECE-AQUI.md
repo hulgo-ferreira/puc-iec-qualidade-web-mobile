@@ -71,22 +71,9 @@ Sem as variáveis o app roda normal. O teste bônus `tests/e2e-bonus/08-*` mostr
 
 ## 6b. (Opcional) Crie a sua conta no CineFav
 
-Na tela de login há o botão **"Criar conta"**. Por padrão a conta fica **no seu navegador** (`localStorage`, com a senha guardada só como *hash*) e você entra com ela depois. A conta de demonstração **`aluno@puc.br` / `1234` continua valendo** (os testes usam ela).
+Na tela de login há o botão **"Criar conta"**: a conta fica **no seu navegador** (a senha é guardada só como *hash*) e você entra com ela depois. A conta de demonstração **`aluno@puc.br` / `1234` continua valendo** (os testes usam ela). Nada para instalar ou programar.
 
-Quer as contas num **banco de verdade**, via **API**? São dois terminais:
-
-```bash
-cd exercicios/01-lab-web-pwa-playwright/pratica
-
-# terminal 1 — API de contas (banco em arquivo: server/db.json, criado sozinho)
-npm run api                                   # http://localhost:3001
-
-# terminal 2 — app apontando pra essa API
-VITE_API_URL=http://localhost:3001 npm run dev
-```
-> Windows (PowerShell): `$env:VITE_API_URL="http://localhost:3001"; npm run dev`
-
-Sem `VITE_API_URL` tudo continua no navegador. O teste bônus `tests/e2e-bonus/11-cadastro-login.spec.ts` mostra como testar o cadastro. **É exemplo de aula**: sem HTTPS, sem sessão/JWT e sem limite de tentativas — não use assim em produção.
+O teste bônus `tests/e2e-bonus/11-cadastro-login.spec.ts` mostra como **testar** o cadastro (conta nova, senha errada, e-mail repetido, senha nunca em texto puro).
 
 ## 7. (Opcional) Explore a PWA — o que é "PWA" de verdade
 

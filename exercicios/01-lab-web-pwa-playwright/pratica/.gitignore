@@ -9,4 +9,3 @@ playwright/.auth/
 *.local
 .DS_Store
 
-server/db.json
