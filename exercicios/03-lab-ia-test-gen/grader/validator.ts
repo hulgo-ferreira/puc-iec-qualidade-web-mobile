@@ -1,4 +1,4 @@
-// Validator — Lab IA Pipeline Test Generation · 20 pts
+// Validator — Lab IA Pipeline Test Generation · 15 pts
 // Rubrica: enunciado.md do lab. Nota AUTOMÁTICA = piso (estrutural, parse-only).
 // NUNCA executa código da entrega (chamaria a API com chave de quem?).
 
@@ -23,7 +23,7 @@ function pendingTodos(raw: string): number {
 
 const criteria: Criterion[] = []
 
-// 1. Pipeline funcional (8): gerador intacto (2) + story própria (2) +
+// 1. Pipeline funcional (6): gerador intacto (1) + story própria (1) +
 //    spec gerado commitado (2) + visual-diff completo (2)
 {
   const gen = read('src', '01-gen-test.ts')
@@ -31,8 +31,8 @@ const criteria: Criterion[] = []
   criteria.push({
     key: 'gen-intacto',
     label: 'Gerador (01-gen-test.ts) intacto e funcional',
-    weight: 2,
-    earned: genOk ? 2 : 0,
+    weight: 1,
+    earned: genOk ? 1 : 0,
     note: genOk ? undefined : 'arquivo ausente ou descaracterizado',
   })
 
@@ -44,8 +44,8 @@ const criteria: Criterion[] = []
   criteria.push({
     key: 'story-propria',
     label: 'User story própria em stories/ (além da de exemplo)',
-    weight: 2,
-    earned: ownStories.length >= 1 ? 2 : 0,
+    weight: 1,
+    earned: ownStories.length >= 1 ? 1 : 0,
     note: ownStories.length >= 1 ? ownStories.join(', ') : 'só a story de exemplo',
   })
 
@@ -79,7 +79,7 @@ const criteria: Criterion[] = []
   })
 }
 
-// 2. Healing loop (6): completo (4) + evidência de execução (2, manual via log no PR)
+// 2. Healing loop (4): completo (3) + evidência de execução (1, manual via log no PR)
 {
   const heal = read('src', '02-healing-loop.ts')
   const todos = heal === null ? 99 : pendingTodos(heal)
@@ -95,8 +95,8 @@ const criteria: Criterion[] = []
   criteria.push({
     key: 'healing-loop',
     label: 'Healing loop completo (máx 3 tentativas, auditável)',
-    weight: 4,
-    earned: complete ? 4 : heal !== null && missing.length <= 2 && todos === 0 ? 2 : 0,
+    weight: 3,
+    earned: complete ? 3 : heal !== null && missing.length <= 2 && todos === 0 ? 1 : 0,
     note: heal === null ? 'arquivo não encontrado'
       : complete ? undefined
       : [todos > 0 ? `${todos} TODO(s)` : null, missing.length ? `falta: ${missing.map(m => m.what).join(', ')}` : null]
@@ -105,14 +105,14 @@ const criteria: Criterion[] = []
   criteria.push({
     key: 'healing-evidencia',
     label: 'Evidência do healing rodando (log no PR)',
-    weight: 2,
+    weight: 1,
     earned: 0,
     manual: true,
     note: 'avaliação manual (Canvas)',
   })
 }
 
-// 3. Relatório crítico (6): existe com seções mínimas (2 auto) + qualidade (4 manual)
+// 3. Relatório crítico (5): existe com seções mínimas (1 auto) + qualidade (4 manual)
 {
   const candidates = ['RELATORIO.md', 'relatorio.md', 'docs/RELATORIO.md']
   let rel: string | null = null
@@ -125,8 +125,8 @@ const criteria: Criterion[] = []
   criteria.push({
     key: 'relatorio-estrutura',
     label: 'Relatório presente com seções (oracle, custo, comparação)',
-    weight: 2,
-    earned: rel === null ? 0 : found >= 3 ? 2 : found >= 1 ? 1 : 0,
+    weight: 1,
+    earned: rel === null ? 0 : found >= 3 ? 1 : 0,
     note: rel === null ? 'RELATORIO.md não encontrado' : `seções detectadas: ${found}/3`,
   })
   criteria.push({

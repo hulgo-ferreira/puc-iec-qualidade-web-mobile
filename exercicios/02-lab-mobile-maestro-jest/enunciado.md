@@ -1,9 +1,9 @@
-# Lab Mobile — Maestro + Jest (20 pts)
+# Lab Mobile — Maestro + Jest (15 pts)
 
 **Disciplina:** Qualidade em Aplicações Web e Mobile
 **Aula:** Aula 4 — Maestro Mobile
 **Entrega:** fork + Pull Request no repositório da disciplina
-**Valor:** 20 pontos
+**Valor:** 15 pontos
 
 ---
 
@@ -53,15 +53,15 @@ maestro test flows/01-launch.yaml
    emulador Android **e** iOS Simulator (quem não tem Mac: só Android, avise no PR).
 5. **CI verde no fork** — workflow de Jest já fornecido; habilite o Actions.
 
-## Critérios de avaliação (20 pts)
+## Critérios de avaliação (15 pts)
 
 | # | Critério | Pontos |
 |---|----------|--------|
-| 1 | Testes unitários Jest completos e passando (02-authStore, 5 testes) | 5 |
-| 2 | Teste de integração RNTL completo (navegação + estado real) | 5 |
-| 3 | 5 flows Maestro completos (sem TODOs, com asserções) | 4 |
-| 4 | Execução real em Android Emulator (vídeo) | 2 |
-| 5 | Execução real em iOS Simulator (vídeo) | 2 |
+| 1 | Testes unitários Jest completos e passando (02-authStore, 5 testes) | 4 |
+| 2 | Teste de integração RNTL completo (navegação + estado real) | 4 |
+| 3 | 5 flows Maestro completos (sem TODOs, com asserções) | 3 |
+| 4 | Execução real em Android Emulator (vídeo) | 1 |
+| 5 | Execução real em iOS Simulator (vídeo) | 1 |
 | 6 | CI verde no fork (Jest no GitHub Actions) | 2 |
 
 **Critério eliminatório:** flakiness > 10% em 3 runs consecutivos = -5 pts.
