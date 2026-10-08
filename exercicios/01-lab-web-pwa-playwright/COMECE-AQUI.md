@@ -34,11 +34,30 @@ npm run test:e2e
 Tudo verde? Ótimo — mas os specs 02–05 estão passando **vazios** (os TODOs
 estão comentados). Seu trabalho é preenchê-los.
 
-## 4. Leia os resolvidos, depois complete na ordem
+## 4. Leia os resolvidos, depois suba a trilha
 
 1. `tests/e2e/auth.setup.ts` — como o storageState é salvo (resolvido)
 2. `tests/e2e/01-login.spec.ts` — locators + assertions modelo (resolvido)
-3. `02-busca-mock.spec.ts` → `03-visual.spec.ts` → `04-spa.spec.ts` → `05-pwa-offline.spec.ts`
+3. Depois siga a trilha abaixo, **do degrau 🟢 ao 🔴**:
+
+## 🧭 A trilha — do fácil ao difícil (você não precisa saber programar bem)
+
+Os testes estão em **3 degraus**. Faça **de baixo pra cima**: cada degrau usa o que você aprendeu no anterior. Cada teste tem uma **etiqueta** (🟢🟡🔴) e **dicas dentro do próprio arquivo** — leia os comentários!
+
+| Degrau | O que é | Testes que **valem nota** (🎯 obrigatórios) | Treino extra (⭐ opcional) |
+|---|---|---|---|
+| 🟢 **1 · Fácil** | completar **1 linha** (o `expect`) | `03` #1 login · `04` #1 app pronto · `05` #1 SW ativo | `02` #3 · #5 |
+| 🟡 **2 · Médio** | juntar **2 ou 3 comandos** | `02` #4 mock · `03` #2 3 telas · `04` #2 estado do JS | `03` #3 · `04` #3 · #4 · `05` #2 · `02` #6 |
+| 🔴 **3 · Mais difícil** | montar um **passo a passo** (todos os passos estão nos TODOs) | `02` #7 rede cai e volta · `05` #3 offline | — |
+
+**Total que vale nota: 8 testes.** Os outros são treino (não precisa fazer, mas ajuda).
+
+### 💡 Dicas pra quem não programa muito
+- **Gravador:** `npx playwright codegen http://localhost:4173/qa` abre o app e **escreve o código por você** enquanto você clica. Copie o trecho e cole no teste.
+- **Modo UI:** `npm run test:e2e:ui` mostra **cada passo do teste na tela** (com "antes/depois"). Ótimo pra entender onde travou.
+- **`await`:** quase toda linha do Playwright começa com `await`. Se esquecer, o teste passa "vazio" — o `npm run lint` avisa.
+- **Travou?** Rode só um teste: `npx playwright test 05 -g "offline"`.
+- **Confira o progresso:** `npm run check` mostra quantos testes de cada spec estão completos.
 
 ## 5. Confira seu progresso (`npm run check`)
 

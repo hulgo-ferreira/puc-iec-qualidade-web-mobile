@@ -43,11 +43,11 @@ npm run test:e2e     # a suíte roda — specs com TODO ainda passam "vazios"
 
 ## O que você entrega
 
-1. **Specs 02–05 completos** — todos os TODOs resolvidos, todo `it()` com asserção real.
+1. **Os 8 testes 🎯 obrigatórios** (a trilha 🟢→🟡→🔴 está no `COMECE-AQUI.md`), com asserção real: `02` #4 e #7 · `03` #1 e #2 · `04` #1 e #2 · `05` #1 e #3. Os demais testes são treino opcional (⭐) e **não contam nota**.
 2. **Baselines de visual regression** commitados (`tests/e2e/03-visual.spec.ts-snapshots/`).
 3. **Workflow de CI verde** no seu fork (`.github/workflows/playwright.yml` já fornecido —
    habilite o Actions e anexe o link da run verde no PR).
-4. **Lighthouse CI** rodando com os 3 budgets do `lighthouserc.json` (print ou log no PR).
+4. **Lighthouse CI** rodando com os 3 budgets do `lighthouserc.json` (print ou log no PR). A config já vem pronta: basta `npm run build && npm run lighthouse`.
 
 ## Critérios de avaliação (15 pts)
 

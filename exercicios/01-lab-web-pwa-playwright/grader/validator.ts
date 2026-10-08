@@ -1,4 +1,5 @@
 // Validator — Lab Web + PWA (Playwright + Lighthouse) · 15 pts
+// NÚCLEO que vale nota (8 testes): 02 #4 e #7 · 03 #1 e #2 · 04 #1 e #2 · 05 #1 e #3. O resto é treino opcional.
 // Rubrica: enunciado.md do lab. Nota AUTOMÁTICA = piso (estrutural, parse-only).
 // Critérios manual:true (CI verde no fork, Lighthouse rodando) entram no Canvas.
 
@@ -59,7 +60,6 @@ const criteria: Criterion[] = []
   const spa = checkSpec('04-spa.spec.ts', [
     { re: /data-app-ready/, what: 'espera pelo data-app-ready' },
     { re: /__spaMarker/, what: 'teste do marker SPA' },
-    { re: /movie\/603/, what: 'deep link /movie/603' },
   ])
   const earned = setupOk ? Math.round(1 + 1 * spa.earnedRatio) : 0
   criteria.push({
@@ -94,7 +94,6 @@ const criteria: Criterion[] = []
   const r = checkSpec('03-visual.spec.ts', [
     { re: /toHaveScreenshot/, what: 'toHaveScreenshot' },
     { re: /setViewportSize/, what: 'setViewportSize (viewports)' },
-    { re: /mask/, what: 'mask em região dinâmica' },
   ])
   const snapsDir = path.join(e2eDir, '03-visual.spec.ts-snapshots')
   const snaps = fs.existsSync(snapsDir)
@@ -118,15 +117,13 @@ const criteria: Criterion[] = []
   const raw0 = read('05-pwa-offline.spec.ts')
   const raw = raw0 === null ? null : activeCode(raw0)
   const ok = raw !== null && /toBe\(\s*['"]activated['"]\s*\)/.test(raw)
-  const manifest = raw !== null && /manifest\.icons/.test(raw)
   criteria.push({
     key: 'sw-lifecycle',
-    label: 'SW lifecycle (estado activated) + manifest',
+    label: 'SW lifecycle (estado activated)',
     weight: 2,
-    earned: ok && manifest ? 2 : ok || manifest ? 1 : 0,
+    earned: ok ? 2 : 0,
     note: raw === null ? 'arquivo não encontrado'
-      : !ok ? "falta asserção .toBe('activated')"
-      : !manifest ? 'validação do manifest incompleta' : undefined,
+      : !ok ? "falta asserção .toBe('activated')" : undefined,
   })
 }
 

@@ -46,6 +46,7 @@ test.describe('Busca + network mocking', () => {
   });
 
   // 🧑‍🏫 3. FÁCIL — busca real (sem mock): dado do catálogo aparece
+  // ⭐ OPCIONAL — treino, NÃO conta nota (o núcleo que vale nota são os outros testes)
   test('3. buscar "Matrix" mostra o resultado', async ({ page }) => {
     await page.goto('/search');
     await page.getByTestId('search-input').fill('Matrix');
@@ -56,6 +57,7 @@ test.describe('Busca + network mocking', () => {
   });
 
   // 🧑‍💻 4. FÁCIL — mock: o "backend" devolve um filme que NÃO existe no catálogo
+  // 🎯 OBRIGATÓRIO · 🟡 médio — o mock já está escrito; falta só o `expect`
   test('4. route() com fulfill injeta um filme inventado', async ({ page }) => {
     // Intercepta ANTES do goto — rota registrada tarde não intercepta nada.
     await page.route('**/api/movies.json', (route) =>
@@ -82,6 +84,7 @@ test.describe('Busca + network mocking', () => {
   });
 
   // 🧑‍💻 5. FÁCIL — busca vazia (ainda sem mock)
+  // ⭐ OPCIONAL — treino, NÃO conta nota (o núcleo que vale nota são os outros testes)
   test('5. busca sem resultado mostra estado vazio', async ({ page }) => {
     // TODO: sem mock nenhum, busque um título que não existe (ex.: "xyzw")
     // TODO: espere o testID search-empty ficar visível
@@ -93,6 +96,7 @@ test.describe('Busca + network mocking', () => {
   // cliente), 500 e 503 representam falha 5xx (erro do servidor — 503 é a
   // mais comum em indisponibilidade real). 1 caso por classe, não repetição.
   for (const status of [404, 500, 503]) {
+    // ⭐ OPCIONAL — treino, NÃO conta nota (o núcleo que vale nota são os outros testes)
     test(`6. catálogo responde ${status} mostra estado de erro`, async ({ page }) => {
       // TODO: route.fulfill com este status (contentType json, body '{}')
       // TODO: navegue pra '/qa'
@@ -101,6 +105,7 @@ test.describe('Busca + network mocking', () => {
   }
 
   // 🧑‍💻 7. 🔴 DESAFIO — recuperação: rede cai, depois volta, retry funciona
+  // 🎯 OBRIGATÓRIO · 🔴 o mais difícil — mas é só juntar 4 comandos que já aparecem nos TODOs. Dica: rode com `npm run test:e2e:ui` e veja cada passo na tela
   test('7. rede fora do ar, depois volta — retry recarrega o catálogo', async ({ page }) => {
     // TODO: intercepte '**/api/movies.json' com route.abort() (rede totalmente fora)
     // TODO: navegue pra '/qa' e espere movielist-error
