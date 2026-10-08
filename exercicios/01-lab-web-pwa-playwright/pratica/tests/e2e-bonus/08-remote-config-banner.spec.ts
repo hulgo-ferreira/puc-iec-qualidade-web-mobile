@@ -37,4 +37,22 @@ test.describe('Banner via Remote Config (mock)', () => {
     await expect(page.getByTestId('movielist-grid')).toBeVisible();
     await expect(page.getByTestId('remote-banner')).toHaveCount(0);
   });
+
+  test('3. o banner se atualiza sozinho (consulta o Remote Config a cada 15 s)', async ({ page }) => {
+    let chamadas = 0;
+    await page.route(FETCH_URL, (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ entries: { banner_message: chamadas++ === 0 ? 'Texto 1' : 'Texto 2' } }),
+      }),
+    );
+
+    await page.clock.install(); // relógio simulado: dá pra "pular" 15 s sem esperar de verdade
+    await page.goto('/qa');
+    await expect(page.getByTestId('remote-banner')).toHaveText('Texto 1');
+
+    await page.clock.fastForward(16_000); // o professor publicou outro texto; passou o intervalo
+    await expect(page.getByTestId('remote-banner')).toHaveText('Texto 2');
+  });
 });
