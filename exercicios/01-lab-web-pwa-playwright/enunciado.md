@@ -1,9 +1,9 @@
-# Lab Web + PWA — Playwright + Lighthouse (20 pts)
+# Lab Web + PWA — Playwright + Lighthouse (15 pts)
 
 **Disciplina:** Qualidade em Aplicações Web e Mobile
 **Aulas:** Aula 2 — Playwright Avançado + Aula 3 — SPA & PWA Testing
 **Entrega:** fork + Pull Request no repositório da disciplina
-**Valor:** 20 pontos
+**Valor:** 15 pontos
 
 ---
 
@@ -49,16 +49,16 @@ npm run test:e2e     # a suíte roda — specs com TODO ainda passam "vazios"
    habilite o Actions e anexe o link da run verde no PR).
 4. **Lighthouse CI** rodando com os 3 budgets do `lighthouserc.json` (print ou log no PR).
 
-## Critérios de avaliação (20 pts)
+## Critérios de avaliação (15 pts)
 
 | # | Critério | Pontos |
 |---|----------|--------|
-| 1 | Auth state reuse correto (`storageState` entre testes) | 3 |
-| 2 | Network mocking (`route()` — fulfill, abort, unroute) | 3 |
-| 3 | Visual regression em 3 viewports com baseline versionado | 4 |
-| 4 | SW lifecycle testado (registrado e ativo) | 3 |
+| 1 | Auth state reuse correto (`storageState` entre testes) | 2 |
+| 2 | Network mocking (`route()` — fulfill, abort, unroute) | 2 |
+| 3 | Visual regression em 3 viewports com baseline versionado | 3 |
+| 4 | SW lifecycle testado (registrado e ativo) | 2 |
 | 5 | Offline mode test (`context.setOffline(true)`) | 3 |
-| 6 | Lighthouse CI com 3 budgets configurados e rodando | 4 |
+| 6 | Lighthouse CI com 3 budgets configurados e rodando | 3 |
 
 **Critério eliminatório:** a suíte deve passar 100% em 3 runs consecutivos
 (flakiness é bug do teste, não azar).

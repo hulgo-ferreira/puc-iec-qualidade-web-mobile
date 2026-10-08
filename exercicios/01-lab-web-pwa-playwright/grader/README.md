@@ -1,4 +1,4 @@
-# Grader — Lab Web + PWA (20 pts)
+# Grader — Lab Web + PWA (15 pts)
 
 Validator estrutural (parse-only) da rubrica do `../enunciado.md`. A nota
 comentada no PR é o **piso automático**; critérios 📝 (CI verde, Lighthouse

@@ -1,4 +1,4 @@
-// Validator — Lab Web + PWA (Playwright + Lighthouse) · 20 pts
+// Validator — Lab Web + PWA (Playwright + Lighthouse) · 15 pts
 // Rubrica: enunciado.md do lab. Nota AUTOMÁTICA = piso (estrutural, parse-only).
 // Critérios manual:true (CI verde no fork, Lighthouse rodando) entram no Canvas.
 
@@ -61,17 +61,17 @@ const criteria: Criterion[] = []
     { re: /__spaMarker/, what: 'teste do marker SPA' },
     { re: /movie\/603/, what: 'deep link /movie/603' },
   ])
-  const earned = setupOk ? Math.round(1 + 2 * spa.earnedRatio) : 0
+  const earned = setupOk ? Math.round(1 + 1 * spa.earnedRatio) : 0
   criteria.push({
     key: 'storage-state',
     label: 'Auth state reuse (storageState) + specs SPA (04)',
-    weight: 3,
+    weight: 2,
     earned,
     note: !setupOk ? 'auth.setup.ts ausente/alterado' : spa.note,
   })
 }
 
-// 2. Network mocking (3) — spec 02 completo
+// 2. Network mocking (2) — spec 02 completo
 {
   const r = checkSpec('02-busca-mock.spec.ts', [
     { re: /route\(/, what: 'page.route' },
@@ -83,13 +83,13 @@ const criteria: Criterion[] = []
   criteria.push({
     key: 'network-mocking',
     label: 'Network mocking (route/fulfill/abort/unroute)',
-    weight: 3,
-    earned: Math.round(3 * r.earnedRatio),
+    weight: 2,
+    earned: Math.round(2 * r.earnedRatio),
     note: r.note,
   })
 }
 
-// 3. Visual regression em 3 viewports com baseline versionado (4)
+// 3. Visual regression em 3 viewports com baseline versionado (3)
 {
   const r = checkSpec('03-visual.spec.ts', [
     { re: /toHaveScreenshot/, what: 'toHaveScreenshot' },
@@ -101,11 +101,11 @@ const criteria: Criterion[] = []
     ? fs.readdirSync(snapsDir).filter(f => f.endsWith('.png')).length
     : 0
   const baselineOk = snaps >= 4 // login + 3 viewports (+detail)
-  const earned = Math.round(3 * r.earnedRatio) + (baselineOk ? 1 : 0)
+  const earned = Math.round(2 * r.earnedRatio) + (baselineOk ? 1 : 0)
   criteria.push({
     key: 'visual',
     label: 'Visual regression 3 viewports + baseline versionado',
-    weight: 4,
+    weight: 3,
     earned,
     note: [r.note, baselineOk ? undefined : `baselines commitados: ${snaps} (esperado ≥4)`]
       .filter(Boolean)
@@ -113,7 +113,7 @@ const criteria: Criterion[] = []
   })
 }
 
-// 4. SW lifecycle testado (3) — spec 05 teste 1
+// 4. SW lifecycle testado (2) — spec 05 teste 1
 {
   const raw0 = read('05-pwa-offline.spec.ts')
   const raw = raw0 === null ? null : activeCode(raw0)
@@ -122,8 +122,8 @@ const criteria: Criterion[] = []
   criteria.push({
     key: 'sw-lifecycle',
     label: 'SW lifecycle (estado activated) + manifest',
-    weight: 3,
-    earned: ok && manifest ? 3 : ok || manifest ? 1 : 0,
+    weight: 2,
+    earned: ok && manifest ? 2 : ok || manifest ? 1 : 0,
     note: raw === null ? 'arquivo não encontrado'
       : !ok ? "falta asserção .toBe('activated')"
       : !manifest ? 'validação do manifest incompleta' : undefined,
@@ -151,7 +151,7 @@ const criteria: Criterion[] = []
   })
 }
 
-// 6. Lighthouse CI com 3 budgets (4) — config auto (2) + run é manual (2)
+// 6. Lighthouse CI com 3 budgets (3) — config auto (2) + run é manual (1)
 {
   const lhPath = path.join(entregaPath, 'pratica', 'lighthouserc.json')
   let budgets = 0
@@ -175,7 +175,7 @@ const criteria: Criterion[] = []
   criteria.push({
     key: 'lighthouse-run',
     label: 'Lighthouse rodando (print/log no PR) + CI verde no fork',
-    weight: 2,
+    weight: 1,
     earned: 0,
     manual: true,
     note: 'avaliação manual (Canvas)',
