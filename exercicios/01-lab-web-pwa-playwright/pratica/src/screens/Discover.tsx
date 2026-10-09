@@ -15,6 +15,7 @@ import { GENRES, getDiscoverMovies, searchTMDB, type DiscoverPage, type TMDBMovi
 import { testIDs } from '@/utils/testIDs';
 import DiscoverCard from '@/components/DiscoverCard';
 import Skeleton from '@/components/Skeleton';
+import LogoutButton from '@/components/LogoutButton';
 
 type Status = 'loading' | 'ready' | 'error';
 type SortKey = 'popular' | 'rating' | 'newest' | 'az';
@@ -126,6 +127,7 @@ export default function Discover() {
         <button className="icon-button" onClick={() => navigate('/qa')}>
           🧪 Ambiente QA (busca, favoritos, testes)
         </button>
+        <LogoutButton />
       </header>
 
       <div className="screen-body">

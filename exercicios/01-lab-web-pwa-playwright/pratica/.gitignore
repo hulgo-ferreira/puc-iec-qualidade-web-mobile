@@ -8,3 +8,4 @@ playwright/.auth/
 .lighthouseci/
 *.local
 .DS_Store
+

@@ -1,9 +1,9 @@
-# Lab Web + PWA — Playwright + Lighthouse (20 pts)
+# Lab Web + PWA — Playwright + Lighthouse (15 pts)
 
 **Disciplina:** Qualidade em Aplicações Web e Mobile
 **Aulas:** Aula 2 — Playwright Avançado + Aula 3 — SPA & PWA Testing
 **Entrega:** fork + Pull Request no repositório da disciplina
-**Valor:** 20 pontos
+**Valor:** 15 pontos
 
 ---
 
@@ -43,22 +43,22 @@ npm run test:e2e     # a suíte roda — specs com TODO ainda passam "vazios"
 
 ## O que você entrega
 
-1. **Specs 02–05 completos** — todos os TODOs resolvidos, todo `it()` com asserção real.
+1. **Os 8 testes 🎯 obrigatórios** (a trilha 🟢→🟡→🔴 está no `COMECE-AQUI.md`), com asserção real: `02` #4 e #7 · `03` #1 e #2 · `04` #1 e #2 · `05` #1 e #3. Os demais testes são treino opcional (⭐) e **não contam nota**.
 2. **Baselines de visual regression** commitados (`tests/e2e/03-visual.spec.ts-snapshots/`).
 3. **Workflow de CI verde** no seu fork (`.github/workflows/playwright.yml` já fornecido —
    habilite o Actions e anexe o link da run verde no PR).
-4. **Lighthouse CI** rodando com os 3 budgets do `lighthouserc.json` (print ou log no PR).
+4. **Lighthouse CI** rodando com os 3 budgets do `lighthouserc.json` (print ou log no PR). A config já vem pronta: basta `npm run build && npm run lighthouse`.
 
-## Critérios de avaliação (20 pts)
+## Critérios de avaliação (15 pts)
 
 | # | Critério | Pontos |
 |---|----------|--------|
-| 1 | Auth state reuse correto (`storageState` entre testes) | 3 |
-| 2 | Network mocking (`route()` — fulfill, abort, unroute) | 3 |
-| 3 | Visual regression em 3 viewports com baseline versionado | 4 |
-| 4 | SW lifecycle testado (registrado e ativo) | 3 |
+| 1 | Auth state reuse correto (`storageState` entre testes) | 2 |
+| 2 | Network mocking (`route()` — fulfill, abort, unroute) | 2 |
+| 3 | Visual regression em 3 viewports com baseline versionado | 3 |
+| 4 | SW lifecycle testado (registrado e ativo) | 2 |
 | 5 | Offline mode test (`context.setOffline(true)`) | 3 |
-| 6 | Lighthouse CI com 3 budgets configurados e rodando | 4 |
+| 6 | Lighthouse CI com 3 budgets configurados e rodando | 3 |
 
 **Critério eliminatório:** a suíte deve passar 100% em 3 runs consecutivos
 (flakiness é bug do teste, não azar).
@@ -89,6 +89,8 @@ npm run test:e2e     # a suíte roda — specs com TODO ainda passam "vazios"
   reviews), diferente do mock same-origin do spec 02. Não precisa de token pra rodar o
   teste (o route() intercepta antes da chamada sair pra rede); só pra usar a tela
   manualmente. Detalhes em `pratica/README.md`.
+
+> 📘 **Passo a passo de cada exercício:** `pratica/PASSO-A-PASSO.md` (lista resumida em `pratica/README.md`).
 
 - **🔴 Desafio difícil — loader + rede real throttled** *(pra casa, depois dos specs 02-03)*:
   a tela de detalhe do Discover (`/`) tem um loading state enquanto busca o filme de

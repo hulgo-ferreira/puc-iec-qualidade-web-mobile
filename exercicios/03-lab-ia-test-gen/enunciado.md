@@ -1,9 +1,9 @@
-# Lab IA — Pipeline Test Generation (20 pts)
+# Lab IA — Pipeline Test Generation (15 pts)
 
 **Disciplina:** Qualidade em Aplicações Web e Mobile
 **Aula:** Aula 5 — IA Avançada
 **Entrega:** fork + Pull Request no repositório da disciplina
-**Valor:** 20 pontos
+**Valor:** 15 pontos
 
 ---
 
@@ -43,13 +43,13 @@ Pré-requisito: lab 02 buildado (é o app alvo) — instruções no `pratica/REA
    gerado commitado em `generated/` + evidência do healing (log no PR).
 4. **Relatório crítico** (`RELATORIO.md`, ~3 páginas).
 
-## Critérios de avaliação (20 pts)
+## Critérios de avaliação (15 pts)
 
 | # | Critério | Pontos |
 |---|----------|--------|
-| 1 | Pipeline funcional (story → teste → execução, sem intervenção manual) | 8 |
-| 2 | Healing loop (re-prompt em falha, máx 3 tentativas, auditável) | 6 |
-| 3 | Relatório crítico (3 pgs) identificando limites reais | 6 |
+| 1 | Pipeline funcional (story → teste → execução, sem intervenção manual) | 6 |
+| 2 | Healing loop (re-prompt em falha, máx 3 tentativas, auditável) | 4 |
+| 3 | Relatório crítico (3 pgs) identificando limites reais | 5 |
 
 **Pontos do relatório crítico:**
 - Tipos de teste em que a IA acertou vs falhou

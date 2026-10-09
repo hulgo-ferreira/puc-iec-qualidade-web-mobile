@@ -20,6 +20,15 @@ export const testIDs = {
     error: 'login-error-message',
   },
 
+  register: {
+    toggle: 'auth-mode-toggle',
+    nameInput: 'register-name-input',
+    emailInput: 'register-email-input',
+    passwordInput: 'register-password-input',
+    submit: 'register-submit-button',
+    error: 'register-error-message',
+  },
+
   movieList: {
     screen: 'movielist-screen',
     searchButton: 'movielist-search-button',
@@ -120,6 +129,7 @@ export const testIDs = {
   },
 
   shell: {
+    logout: 'logout-button',
     updateToast: 'update-toast',
     updateButton: 'update-reload-button',
     installBanner: 'install-button',

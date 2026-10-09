@@ -21,6 +21,7 @@ test.describe('PWA', () => {
   // fixo/cacheável que o Service Worker consegue servir sem rede.
 
   // 🧑‍🏫 1. FÁCIL — Service Worker registrado e ativo
+  // 🎯 OBRIGATÓRIO · 🟢 fácil — falta só trocar o valor esperado
   test('1. Service Worker fica ativo após a primeira visita', async ({ page }) => {
     await page.goto('/qa');
     await expect(page.getByTestId('movielist-grid')).toBeVisible();
@@ -39,6 +40,7 @@ test.describe('PWA', () => {
   });
 
   // 🧑‍💻 2. FÁCIL — manifest válido e linkado
+  // ⭐ OPCIONAL — treino, NÃO conta nota (o núcleo que vale nota são os outros testes)
   test('2. manifest da PWA está linkado e tem os campos mínimos', async ({ page }) => {
     await page.goto('/qa');
 
@@ -57,6 +59,7 @@ test.describe('PWA', () => {
   });
 
   // 🧑‍💻 3. 🔴 DESAFIO — o app funciona OFFLINE
+  // 🎯 OBRIGATÓRIO · 🔴 mais difícil — 4 passos em ordem (visitar → esperar o SW → ficar offline → recarregar); os TODOs já listam todos
   test('3. catálogo continua acessível offline', async ({ page, context }) => {
     // Passo 1: visita online.
     // TODO: goto('/qa') e espere movielist-grid

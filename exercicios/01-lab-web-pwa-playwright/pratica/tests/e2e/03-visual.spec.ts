@@ -22,6 +22,7 @@ const VIEWPORTS = [
 
 test.describe('Visual regression', () => {
   // 🧑‍🏫 1. FÁCIL — tela de login (estática, ótima pra começar)
+  // 🎯 OBRIGATÓRIO · 🟢 fácil — 1 comando: `toHaveScreenshot`
   test('1. login se mantém visualmente estável', async ({ page }) => {
     await page.goto('/login');
     await expect(page.getByTestId('login-screen')).toBeVisible();
@@ -34,6 +35,7 @@ test.describe('Visual regression', () => {
   // ⚠️ Use '/qa' (ambiente determinístico), NÃO '/' — "/" hoje é a tela
   // Discover com dado real do TMDB, que muda e quebraria o baseline sozinho.
   for (const vp of VIEWPORTS) {
+    // 🎯 OBRIGATÓRIO · 🟡 médio — o mesmo comando, repetido 3 vezes por um `for` (a lista VIEWPORTS já está pronta)
     test(`2. home estável em ${vp.name} (${vp.width}x${vp.height})`, async ({ page }) => {
       // TODO: ajuste o viewport: page.setViewportSize({ width: vp.width, height: vp.height })
       // TODO: navegue pra '/qa' e espere movielist-grid ficar visível
@@ -43,6 +45,7 @@ test.describe('Visual regression', () => {
   }
 
   // 🧑‍💻 3. 🔴 DESAFIO — mascarar região dinâmica
+  // ⭐ OPCIONAL — treino, NÃO conta nota (o núcleo que vale nota são os outros testes)
   test('3. detalhe do filme com máscara no botão de favorito', async ({ page }) => {
     // O botão de favorito muda de cor conforme o estado — típica região que
     // gera diff falso. toHaveScreenshot aceita { mask: [locator] }.

@@ -12,6 +12,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Comportamento SPA', () => {
   // 🧑‍🏫 1. FÁCIL — esperar o app ficar interativo (sem sleep!)
+  // 🎯 OBRIGATÓRIO · 🟢 fácil — esperar o sinal `data-app-ready`
   test('1. app sinaliza que está pronto via data-app-ready', async ({ page }) => {
     await page.goto('/qa');
 
@@ -22,6 +23,7 @@ test.describe('Comportamento SPA', () => {
   });
 
   // 🧑‍💻 2. FÁCIL — navegação client-side não recarrega a página
+  // 🎯 OBRIGATÓRIO · 🟡 médio — ler uma variável do navegador com `page.evaluate`
   test('2. ir pra busca e voltar mantém o estado do JS', async ({ page }) => {
     // '/qa' = ambiente determinístico (ver nota do teste 1 do spec 03).
     await page.goto('/qa');
@@ -41,6 +43,7 @@ test.describe('Comportamento SPA', () => {
   });
 
   // 🧑‍💻 3. 🔴 DESAFIO — lazy loading: o chunk da rota só baixa ao navegar
+  // ⭐ OPCIONAL — treino, NÃO conta nota (o núcleo que vale nota são os outros testes)
   test('3. rota /favorites é um chunk lazy', async ({ page }) => {
     // Estratégia: colete as URLs de .js baixadas (page.on('request')),
     // navegue até favoritos e verifique que um chunk NOVO foi baixado
@@ -52,6 +55,7 @@ test.describe('Comportamento SPA', () => {
   });
 
   // 🧑‍💻 4. 🔴 DESAFIO — deep link em rota protegida
+  // ⭐ OPCIONAL — treino, NÃO conta nota (o núcleo que vale nota são os outros testes)
   test('4. acessar /movie/603 direto (deep link) funciona logado', async ({ page }) => {
     // SPA com router precisa responder a URL direta, não só a cliques.
     // TODO: goto('/movie/603') e espere detail-title com texto "Matrix"
